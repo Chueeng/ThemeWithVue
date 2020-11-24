@@ -12,7 +12,7 @@
       />
     </div>
 
-    <transition name="circle" mode="in-out">
+    <transition name="move-down">
       <card class="box light" v-if="picked === 'light'"></card>
       <card class="box dark" v-else-if="picked === 'dark'"></card>
       <card class="box orange" v-else></card>
@@ -31,7 +31,7 @@ export default {
       colors: [
         { id: 1, value: "light" },
         { id: 2, value: "dark" },
-        { id: 3, value: "orange" }
+        { id: 3, value: "orange" },
       ],
     };
   },
@@ -49,29 +49,35 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 .box {
-  font-family: 'Varela Round', sans-serif; 
-  z-index: -1;
-  align-items: center;
-  background-color: var(--background);
-  color: var(--color);
-  height: 100%;
-  justify-content: center;
-  position: absolute;
+  min-height: 100vh;
   width: 100%;
+  background-color: var(--background);
+  position: absolute;
+  font-family: 'Varela Round', sans-serif;
 }
 
-.circle-enter-active {
-  animation: 1s circle reverse;
+.move-down-enter-active {
+  animation: 5s down-enter;
 }
-.circle-leave-active {
-  animation: 9s circle;
+.move-down-leave-active {
+  animation: 5s down-leave;
 }
-@keyframes circle {
+@keyframes down-enter {
   0% {
-    clip-path: circle(150% at 150px 90px);
+    /* clip-path: inset(0 0 100% 0); */
+     clip-path: inset(0 100% 0 0);
   }
   100% {
-    clip-path: circle(0% at 150px 90px);
+    clip-path: inset(0);
+  }
+}
+@keyframes down-leave {
+  0% {
+    clip-path: inset(0);
+  }
+  100% {
+    /* clip-path: inset(100% 0 0 0); */
+    clip-path: inset(0 0 0 100%);
   }
 }
 
@@ -109,7 +115,6 @@ body {
   --text-color-error: #e44838;
   --text-color-warning: #ff9900;
 }
-
 .input-color {
   outline: none;
   width: 40px;
