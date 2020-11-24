@@ -1,6 +1,6 @@
 Create Dynamic Theme With Vue
 
-![](src/assets/leftToRighty.gif)
+![](/assets/leftToRighty.gif)
 
 Read more from here:
 https://cceng.medium.com/how-to-create-dynamic-themes-with-vue-81d27ffd9414
